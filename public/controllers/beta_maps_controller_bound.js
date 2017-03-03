@@ -421,6 +421,7 @@ k.features[1].geometry.coordinates.push([dest_global.lng,dest_global.lat]);
 			if(j.properties.result == false)
 			{
 			document.getElementById("modal").click();
+			document.getElementById("noroute").innerHTML = j.properties.info;
 			console.log("route does not exist");
 			console.log(j);
 			return;

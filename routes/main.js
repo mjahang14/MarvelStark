@@ -40,51 +40,41 @@ router.post('/api/getRoute/', function (req, res) {
 	console.log("POST MEHTOD CALLED /api/getRoute");
 	var routeEndPoints = req.body;
 	console.log(JSON.stringify(routeEndPoints));
-	// TODO: src and destination validations
+
 	var originPoint=routeEndPoints.features[0];
 	var destPoint =routeEndPoints.features[1];
 
-    console.log("Origin/Destination point " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
+  console.log("Origin/Destination point " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
 	droneRoute.getRoute_Grid(originPoint, destPoint, false,function (pathLine) {
-		if (1) {// TODO: error handling
-      console.log("it is pmy path" + JSON.stringify(pathLine));
-			res.json(pathLine);
-		} else {
-			console.log(pathLine);
-		}
-	});
+	         	 console.log("Route Path::"+ JSON.stringify(pathLine));
+			       res.json(pathLine);
+		});
 });
 
 router.post('/api/populateNFZ/', function (req, res) {
-	console.log("feed_nfz to update the databae with NFZ");
+
 	var nfz_doc = req.body;
-
-	console.log("Received Data: ", JSON.stringify(nfz_doc));
-
-	var coordinateArrLen = nfz_doc.geometry.coordinates.length;
-	console.log("coordinateArrLen: ",  coordinateArrLen);
+	console.log("Received Data for NFZ update::", JSON.stringify(nfz_doc));
 
 	mongoHandle.insertDocument('geo_nfz_layer_drawing', nfz_doc, function() {
-		res.json({"status":"Success"});
+	          	res.json({"status":"Success"});
 	});
 });
 
 router.post('/api/getGrid/', function (req, res) {
 
-	console.log("POST MEHTOD CALLED /api/getGrid");
 	var endPoints = req.body;
-	console.log(JSON.stringify(endPoints));
-	// TODO: src and destination validations
 	var originPoint=endPoints.features[0];
 	var destPoint =endPoints.features[1];
 
-  	console.log("Origin/Destination for GRID " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
-  	
+  	console.log("POST API Origin/Destination for GRID:: " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
+
 	droneRoute.getRoute_Grid(originPoint, destPoint, true,function (grid) {
-		if (1) {// TODO: error handling
-			res.json(grid);
+		if (grid.features.length) {
+						res.json(grid);
 		} else {
-			console.log(grid);
+			      console.log("Grid is Empty::");
+						res.json(grid);
 		}
 	});
 });

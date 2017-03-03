@@ -53,7 +53,7 @@ function initMap() {
 			marker0.setMap(null);
 		}
 		
-if(j)
+if((j)&&(routeret))
 {
 console.log("route removal",j);
 for(var i =0;i<routeret.length;i++)
@@ -118,7 +118,7 @@ map.data.remove(routeret[i]);
 	{
 		marker1.setMap(null);
 	}
-	if(j)
+	if((j)&&(routeret))
 {
 console.log("route removal",j);
 for(var i =0;i<routeret.length;i++)
@@ -252,7 +252,7 @@ console.log("in find");
 					color = "red"
 				}
 				else if(prop == "2")
-				{ color = "blue"
+				{ color = "#334FFF"
 				}
 				
 				return {
@@ -334,7 +334,7 @@ if(j.properties.result == false)
 					color = "red"
 				}
 				else if(prop == "2")
-				{ color = "blue"
+				{ color = "#334FFF"
 				}
 				
 				return {

@@ -33,4 +33,4 @@ var routes = require('./routes/main');
 app.use('/', routes);
 
 var server = app.listen(8082);
-console.log("Route app listening at http://%s:%s", server.address().address, server.address().port);
+console.log("Route app listening at Port: %s",server.address().port);

@@ -30,7 +30,7 @@ module.exports = {
 		var destPoint = point(dest.geometry.coordinates[0]);
 
 		//var srcPointOrigin = point([77.031827, 28.427263]);
-		var gridWidth = 10; // In Meters
+		var gridWidth = 1000; // In Meters
 		var units = "kilometers";
 
 		console.log(JSON.stringify(srcPoint));
@@ -68,23 +68,25 @@ module.exports = {
 		//console.log("POLY BOXXXXXX")
 		//console.log(JSON.stringify(bboxPolygon));
 		var roundDistance = Math.ceil(distance);
+		console.log("Round Distance********** : " + roundDistance);
 
-		if (roundDistance < 1) {
+		if (roundDistance <= 1) {
 			gridWidth = 25;
 		}
-		else if (roundDistance > 1 && roundDistance < 5) {
+		else if (roundDistance > 1 && roundDistance <= 5) {
 			gridWidth = 100;
-		} else if (roundDistance > 5 && roundDistance < 10) {
+		} else if (roundDistance > 5 && roundDistance <= 10) {
 			gridWidth = 250;
-		} else if (roundDistance > 10 && roundDistance < 15) {
+		} else if (roundDistance > 10 && roundDistance <= 15) {
 			gridWidth = 500
-		} else if(roundDistance > 15 && roundDistance < 25){
+		} else if(roundDistance > 15 && roundDistance <= 25){
 			gridWidth = 750
-		} else if (roundDistance > 25 && roundDistance < 30) {
+		} else if (roundDistance > 25 && roundDistance <= 30) {
 			gridWidth = 1500
 		} else {
 			gridWidth = 2000
 		}
+		console.log("GRID WIDTH : " + gridWidth);
 		var squareGrid = turf.squareGrid(bbox, gridWidth/1000, units); // gridWidth converted to kilometer
 
 		console.log("squareGrid number of features: " + squareGrid.features.length);
@@ -104,7 +106,7 @@ module.exports = {
 		};
 
 		mongo_handle.getDocumentsRouting("geo_nfz_layer_drawing", queryParams, searchParams, function (err, listing) {
-			//console.log(JSON.stringify(listing));
+			console.log("DATA FROM DB" + JSON.stringify(listing));
 			var black = white = 0;
 			var nfz_feature_collection = {
 				"type": "FeatureCollection",
@@ -159,6 +161,8 @@ module.exports = {
 					}
 				});
 			});
+
+			var srcFlag = false;
 
 			if(!squareGrid.features[srcIndex].properties.routeFlag || !squareGrid.features[dstIndex].properties.routeFlag) {
 				srcFlag = true;

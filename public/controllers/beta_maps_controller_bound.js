@@ -49,7 +49,7 @@ function initMap() {
 			marker0.setMap(null);
 		}
 		
-if(j)
+if((j)&&(routeret))
 {
 console.log("route removal",j);
 for(var i =0;i<routeret.length;i++)
@@ -115,7 +115,7 @@ map.data.remove(routeret[i]);
 	{
 		marker1.setMap(null);
 	}
-	if(j)
+	if((j)&&(routeret))
 {
 console.log("route removal",j);
 for(var i =0;i<routeret.length;i++)
@@ -247,7 +247,7 @@ var templng;
 					color = "red"
 				}
 				else if(prop == "2")
-				{ color = "#63aedb"
+				{ color = "#334FFF"
 				}
 				else if(prop == "1")
 				{ color = "gray"
@@ -332,7 +332,7 @@ function grid()
 					color = "red"
 				}
 				else if(prop == "2")
-				{ color = "#63aedb"
+				{ color = "#334FFF"
 				}
 				else if(prop == "1")
 				{ color = "gray"
@@ -437,7 +437,7 @@ k.features[1].geometry.coordinates.push([dest_global.lng,dest_global.lat]);
 					color = "red"
 				}
 				else if(prop == "2")
-				{ color = "#63aedb"
+				{ color = "#334FFF"
 				}
 				else if(prop == "1")
 				{ color = "gray"

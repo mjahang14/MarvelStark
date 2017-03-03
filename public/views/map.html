@@ -6,7 +6,7 @@
  
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../css/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 
@@ -22,7 +22,7 @@
    
   </script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7hh8XVw7U9V27C6NsTVLm5SAGIQUkf3I&libraries=places,geometry&callback=initMap"></script>
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDphN5FB8Lvy05mr1UAGQEW6Z7keOHnIOU&libraries=places,geometry&callback=initMap"></script>
 </head>
 
 <body id="top">
@@ -93,5 +93,27 @@
 <script src="../controllers/scripts/jquery.min.js"></script>
 <script src="../controllers/scripts/jquery.backtotop.js"></script>
 <script src="../controllers/scripts/jquery.mobilemenu.js"></script>
+
+  <input style= "display:none;" type = "submit" id="modal" data-toggle="modal" data-target="#myModal" visible = "false"></input>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">No Flying Zone</h4>
+      </div>
+      <div class="modal-body">
+        <p id="noroute"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 </body>
 </html>

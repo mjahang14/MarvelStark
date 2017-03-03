@@ -351,7 +351,7 @@ function grid()
 
 				var lng_center=gridgeo.features[i].properties.center[0];
 				var lat_center=gridgeo.features[i].properties.center[1];
-				//console.log(lat_center,lng_center);
+				
 
 
 					/*var marker = new google.maps.Marker({
@@ -420,6 +420,7 @@ k.features[1].geometry.coordinates.push([dest_global.lng,dest_global.lat]);
 			j = JSON.parse(xhr.responseText);
 			if(j.properties.result == false)
 			{
+			document.getElementById("modal").click();
 			console.log("route does not exist");
 			console.log(j);
 			return;
@@ -457,7 +458,7 @@ k.features[1].geometry.coordinates.push([dest_global.lng,dest_global.lat]);
 		
   
   
-  
+
   
   
   

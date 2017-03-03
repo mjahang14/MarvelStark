@@ -45,7 +45,7 @@ router.post('/api/getRoute/', function (req, res) {
 	var destPoint =routeEndPoints.features[1];
 
     console.log("Origin/Destination point " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
-	droneRoute.getRoute(originPoint, destPoint, false,function (pathLine) {
+	droneRoute.getRoute_Grid(originPoint, destPoint, false,function (pathLine) {
 		if (1) {// TODO: error handling
       console.log("it is pmy path" + JSON.stringify(pathLine));
 			res.json(pathLine);
@@ -80,7 +80,7 @@ router.post('/api/getGrid/', function (req, res) {
 
   	console.log("Origin/Destination for GRID " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
   	
-	droneRoute.getRoute(originPoint, destPoint, true,function (grid) {
+	droneRoute.getRoute_Grid(originPoint, destPoint, true,function (grid) {
 		if (1) {// TODO: error handling
 			res.json(grid);
 		} else {

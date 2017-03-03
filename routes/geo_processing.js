@@ -8,9 +8,23 @@ var geoPath = require("./geo_route");
 
 var ROW=0
 var COL=0
+
+var src_dst_inside_nfz = {
+	"type": "Feature",
+	"geometry": {
+	        "type": "LineString",
+	        "coordinates": []
+	},
+	"properties": {
+	        "routeFlag": 2,
+	        "result" : false,
+	        "info": ""
+	}
+};
+
 module.exports = { 
 
-	getRoute : function (src, dest, isGrid, callback) {
+	getRoute_Grid : function (src, dest, isGrid, callback) {
 
 		var srcPoint = point(src.geometry.coordinates[0]);
 		var destPoint = point(dest.geometry.coordinates[0]);
@@ -55,7 +69,10 @@ module.exports = {
 		//console.log(JSON.stringify(bboxPolygon));
 		var roundDistance = Math.ceil(distance);
 
-		if (roundDistance > 1 && roundDistance < 5) {
+		if (roundDistance < 1) {
+			gridWidth = 25;
+		}
+		else if (roundDistance > 1 && roundDistance < 5) {
 			gridWidth = 100;
 		} else if (roundDistance > 5 && roundDistance < 10) {
 			gridWidth = 250;
@@ -97,10 +114,6 @@ module.exports = {
 			listing.forEach(function (geoNFZ) {
 				nfz_feature_collection.features = nfz_feature_collection.features.concat(geoNFZ);
 			});
-
-			console.log("NFZ feature Collection- Fetched from Mongo");
-			console.log(JSON.stringify(nfz_feature_collection));
-			// 4
 			var grid_counter = 0
 			var srcIndex, dstIndex = 0;
 			var intersectPoly = null;
@@ -147,6 +160,9 @@ module.exports = {
 				});
 			});
 
+			if(!squareGrid.features[srcIndex].properties.routeFlag || !squareGrid.features[dstIndex].properties.routeFlag) {
+				srcFlag = true;
+			}
 			ROW = Math.sqrt(grid_counter);
 			COL = ROW;
 
@@ -158,12 +174,30 @@ module.exports = {
 			// 5. Arrange data in 2D space
 			// and calculate best route in distance
 
-			console.log("-------------------CALLING ALGO--------------------");
-			geoPath.buildMatrix(squareGrid, srcIndex, dstIndex,srcPoint,destPoint,ROW,COL);
-
-
-			if(isGrid) {callback(squareGrid);} else {
-			callback(geoPath.pathLine);}
-		});
-	}
+			if(isGrid) {
+				callback(squareGrid);
+			} else {
+				if(srcFlag) {
+					var src_dst_inside_nfz = {
+						"type": "Feature",
+						"geometry": {
+						    "type": "LineString",
+						    "coordinates": []
+						},
+						"properties": {
+						    "routeFlag": 2,
+						    "result" : false,
+						    "info": "Origin/Dest inside NFZ"
+						}
+					};
+					console.log("Kamina log")
+					callback(src_dst_inside_nfz);
+				} else {
+					console.log("-------------------CALLING ALGO--------------------");
+					geoPath.buildMatrix(squareGrid, srcIndex, dstIndex,srcPoint,destPoint,ROW,COL);
+					callback(geoPath.pathLine);
+				}
+			}
+		})
+}
 }; // module.exports

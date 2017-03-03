@@ -1,0 +1,17 @@
+{
+  "name": "dronifly",
+  "version": "1.0.0",
+  "description": "Path maps for drone",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "express": "^4.15.0",
+    "node-rest-client": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hack3Team26",
+  "license": "ISC"
+}

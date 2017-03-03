@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dronifly</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../css/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+   
+  </head>
+  
+    
+    <script src="../controllers/beta_maps_submit.js">
+ 
+    </script>
+	
+	
+   </head>
+<body id="top">
+
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i>  +91 124 409 5888</li>
+        <li><i class="fa fa-envelope-o"></i> info@dpathfinder.com</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    <!-- ################################################################################################ --> 
+  </div>
+</div>
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a href="../index.html" style="font-family:calibri;font-size:30px;">DRAW NFZ</a></h1>
+    </div>
+  
+    <!-- ################################################################################################ --> 
+  </header>
+</div>
+<!-- ################################################################################################ --> 
+<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
+<div class="wrapper row2" style="height:50px;">
+  <nav id="mainav" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <ul class="clear" style="margin-top:0;" align="center">
+      <li class="active"><a href="../index.html">Home</a></li>
+     
+      
+      <li><button class = "btn btn-success" id="greenbutton" onclick="find()"> Plot NFZ </button></li>
+      <li><button class = "btn btn-success" id="greenbutton" onclick="route()"> Get Route </button></li>
+	  
+	  <li><a href = "submitnfz.html"> DRAW NFZ</a></li>
+	  <li><a href = "bounding.html"> BOUNDING BOX</a></li>
+      
+    </ul>
+    <!-- ################################################################################################ --> 
+  </nav>
+</div>
+
+
+  
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">No Flying Zone</h4>
+      </div>
+      <div class="modal-body">
+        <p>New NFZ created!</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<input id="pac-input" type="text" class="form-control" placeholder="Search" style="width:40%">
+
+  <div id="map">
+  
+  </div>
+  <input style= "display:none;" type = "submit" id="modal" data-toggle="modal" data-target="#myModal" visible = "false"></input>
+<!-- JAVASCRIPTS --> 
+<script src="../controllers/scripts/jquery.min.js"></script>
+<script src="../controllers/scripts/jquery.backtotop.js"></script>
+<script src="../controllers/scripts/jquery.mobilemenu.js"></script>
+
+	<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7hh8XVw7U9V27C6NsTVLm5SAGIQUkf3I&libraries=drawing,places,geometry&callback=initMap">
+    </script>
+	
+	
+  
+  </body>
+</html>

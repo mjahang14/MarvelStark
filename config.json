@@ -1,0 +1,14 @@
+{
+	"mapUrl": "https://maps.googleapis.com/maps/api",
+	"mongoConnection": {
+		"URL": "mongodb://localhost:27017/dronify",
+		"Port": 27017
+	},
+	"authKey": "",
+	"geoLocation": [
+		    "Saket+Metro,Delhi"
+            ],
+	"geoDirection": [
+		{"origin":"Aricent+tikri+gurgaon", "destination": "HUDA+city+Center,Gurgaon"}
+	]
+}

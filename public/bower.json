@@ -1,0 +1,25 @@
+{
+  "name": "public",
+  "description": "UI for drone map",
+  "main": "index.html",
+  "authors": [
+    "Self"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.6.2",
+    "angular": "^1.6.2",
+    "bootstrap": "^3.3.7",
+    "ng-maps": "ng-map#*",
+    "google-maps": "^3.2.1"
+  }
+}

@@ -22,7 +22,7 @@ var src_dst_inside_nfz = {
 	}
 };
 
-module.exports = { 
+module.exports = {
 
 	getRoute_Grid : function (src, dest, isGrid, callback) {
 
@@ -106,7 +106,7 @@ module.exports = {
 		};
 
 		mongo_handle.getDocumentsRouting("geo_nfz_layer_drawing", queryParams, searchParams, function (err, listing) {
-			console.log("DATA FROM DB" + JSON.stringify(listing));
+			//console.log("DATA FROM DB" + JSON.stringify(listing));
 			var black = white = 0;
 			var nfz_feature_collection = {
 				"type": "FeatureCollection",

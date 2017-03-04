@@ -46,7 +46,7 @@ router.post('/api/getRoute/', function (req, res) {
 
   console.log("Origin/Destination point " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
 	droneRoute.getRoute_Grid(originPoint, destPoint, false,function (pathLine) {
-	         	 console.log("Route Path::"+ JSON.stringify(pathLine));
+	         	 //console.log("Route Path::"+ JSON.stringify(pathLine));
 			       res.json(pathLine);
 		});
 });
@@ -67,7 +67,7 @@ router.post('/api/getGrid/', function (req, res) {
 	var originPoint=endPoints.features[0];
 	var destPoint =endPoints.features[1];
 
-  	console.log("POST API Origin/Destination for GRID:: " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
+  	//console.log("POST API Origin/Destination for GRID:: " +JSON.stringify(originPoint) +JSON.stringify(destPoint));
 
 	droneRoute.getRoute_Grid(originPoint, destPoint, true,function (grid) {
 		if (grid.features.length) {

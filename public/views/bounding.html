@@ -10,7 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="../css/styles/layout.css" rel="stylesheet" type="text/css" media="all">
 
@@ -50,7 +49,7 @@
   <header id="header" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <div id="logo" class="fl_left">
-      <h1><a href="../index.html" style="font-family:calibri;font-size:30px;">DISPLAY BOUNDING BOX</a></h1>
+      <h1><a style="font-family:calibri;font-size:30px;">DISPLAY BOUNDING BOX</a></h1>
     </div>
   
   </header>
@@ -61,7 +60,7 @@
     <ul class="clear">
       <li class="active"><a href="../index.html">Home</a></li>
      
-      
+      <li><a href = "map.html"> DRONE MAP</a></li>
       <li><button class = "btn btn-success" id="greenbutton" onclick="findNFZ()"> Plot NFZ </button></li>
       <li><button class = "btn btn-success" id="greenbutton" onclick="route()"> Get Route </button></li>
 	  <li><button class = "btn btn-success" id="greenbutton" onclick="grid()"> Get grid </button></li>
@@ -83,7 +82,25 @@
 
 
   
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">No Flying Zone</h4>
+      </div>
+      <div class="modal-body">
+        <p id="noroute" align = "center"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 <input id="pac-input" type="text" class="form-control" placeholder="Search source" style="width:40%">
 
 
@@ -95,9 +112,11 @@
 <script src="../controllers/scripts/jquery.mobilemenu.js"></script>
 
 	<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7hh8XVw7U9V27C6NsTVLm5SAGIQUkf3I&libraries=places,geometry&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9NmninZzJXqGhXCMF_1Xp2iNupHCKxS0&libraries=places,geometry&callback=initMap">
     </script>
 	
+  <input style= "display:none;" type = "submit" id="modal" data-toggle="modal" data-target="#myModal" visible = "false"></input>
+<!-- JAVASCRIPTS --> 
 	
   
   </body>

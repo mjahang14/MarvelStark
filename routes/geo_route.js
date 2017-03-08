@@ -13,8 +13,9 @@ var dest={};
 var path=[];//contain the route cordinates
 var diagonalPath=[];
 var INT_MAX=-1;
-var ROW =0;
-var COL =0;
+var lowVal=0;
+var ROW =lowVal;
+var COL =lowVal;
 var blackwhite=1;
 
 
@@ -30,19 +31,13 @@ var pathLine  = {
 					                "result" : false
 					        }
                 }
-
-
-
-
-
 // check whether given cell (row, col) is a valid
 // cell or not.
 isValid = function(row,col) {
 			 // return true if row number and column number
 			 // is in range
-			 return ((row >= 0) && (row < ROW) && (col >= 0) && (col < COL));
+			 return ((row >= lowVal) && (row < ROW) && (col >= lowVal) && (col < COL));
 };
-
 
 
 buildMatrix = function (squareGrid, srcIndex, dstIndex, srcPoint, destPoint,prow,pcol) {
@@ -57,24 +52,24 @@ buildMatrix = function (squareGrid, srcIndex, dstIndex, srcPoint, destPoint,prow
 								 visited[i] = new Array(COL);
 					}
 
-          console.log("ROW and COL are"+ROW,COL);
+          console.log("No of ROW & COL are:::"+ROW+"   "+COL);
 
           var features =squareGrid.features;
-					var r=ROW-1,c=0;
+					var ri=ROW-1,ci=lowVal;
 					features.forEach(function (item,index){
-								if (r < 0){
-										r = ROW-1;
-										c++;
+								if (ri < lowVal){
+										ri = ROW-1;
+										ci++;
 								}
 								if(index == srcIndex)
-								source = {"x":r,"y":c};
+								source = {"x":ri,"y":ci};
 								if(index == dstIndex)
-								dest = {"x":r,"y":c};
-  							matrix[r][c]=item.properties.routeFlag;
-	      				r--;
+								dest = {"x":ri,"y":ci};
+  							matrix[ri][ci]=item.properties.routeFlag;
+	      				ri--;
 					});
 
-	       printMatrix(matrix,blackwhite);
+	     //  printMatrix(matrix,blackwhite);
 				 //created the Visted matrix
 				 for(var i =0;i<ROW;i++)
 				 {
@@ -88,31 +83,29 @@ buildMatrix = function (squareGrid, srcIndex, dstIndex, srcPoint, destPoint,prow
 
 //n
 calculateBFS = function(features,matrix,visited,source,dest,srcPoint, destPoint){
-				 console.log("Source cordinates::"+JSON.stringify(source));
-	       console.log("Destination cordinates::"+JSON.stringify(dest));
+				// console.log("Source cordinates::"+JSON.stringify(source));
+	       //console.log("Destination cordinates::"+JSON.stringify(dest));
 	       var dist = BFS(matrix,source,dest,visited);
 
 	       if (dist != INT_MAX) {
 	               console.log("Shortest Path is "+ dist);
-								 console.log("path-->"+JSON.stringify(path));
+								// console.log("path-->"+JSON.stringify(path));
 
 								findDiagonalPath();
 
 
 	               pathLine.geometry.coordinates= [];
-	               //console.log("my new PATH:---");
 	               pathLine.geometry.coordinates = pathLine.geometry.coordinates.concat([srcPoint.geometry.coordinates]);
 	               diagonalPath.forEach(function(item,index){
-                       // find the dignal
+                       // find the dignal path
 
-											 console.log(item[0]*COL+item[1]);
+											// console.log(item[lowVal]*COL+item[1]);
                        var xrow = (ROW-1)-item[0];
                        var xcol =item[1];
                        var index =item[0]*COL+item[1];
                        var xindex=xrow+COL*xcol;
-                       //   console.log("xlate   [" + item[0]+"--"+item[1]+"<>"+index +"] to -->["+ xrow +"--"+xcol+"<>" + xindex +" ]");
                        pathLine.geometry.coordinates = pathLine.geometry.coordinates.concat([features[xindex].properties.center]);
-                       //console.log(features[index].properties.center);
+
                   });
 	               pathLine.properties.result = true;
 	               pathLine.geometry.coordinates = pathLine.geometry.coordinates.concat([destPoint.geometry.coordinates]);
@@ -121,9 +114,10 @@ calculateBFS = function(features,matrix,visited,source,dest,srcPoint, destPoint)
 	       {
 	               console.log("Shortest Path doesn't exist");
 	               path=[];
-								 diagonalPath=[];
+				   diagonalPath=[];
 	               pathLine.geometry.coordinates= [];
 	               pathLine.properties.result == false;
+	               pathLine.properties.info = "No path exists between Origin and Destination";
 	       }
 
 
@@ -149,7 +143,7 @@ BFS = function(mat,src,dest,visited) {
 			q.push(s); // Enqueue source cell
 
 			// Do a BFS starting from source cell
-			while (q.length> 0)
+			while (q.length> lowVal)
 			{
 					var curr = q.shift();//get the first element from q
 					var pt = curr.src;
@@ -158,7 +152,8 @@ BFS = function(mat,src,dest,visited) {
 					// we are done
 					if (pt.x == dest.x && pt.y == dest.y)
 					{
-								/*   console.log("---------------------");
+								/*
+								console.log("---------------------");
 								console.log("PrintMat:: The VISITED matrix ");
 								printMat(visited,1);
 								console.log("---------------------");
@@ -167,10 +162,8 @@ BFS = function(mat,src,dest,visited) {
 								//  printMat(visited,2);
 
 								//    console.log("PrintMat:: The path cordinates matrix ");
-								printCordi(visited,curr.dist,src,dest);
-
-
-								return curr.dist;
+								buildCoordi(visited,curr.dist,src,dest);
+   							return curr.dist;
 					 }
 
 						// check & enqueue its adjacent cells
@@ -211,12 +204,11 @@ findDiagonalPath = function (){
 			     //console.log( "" );
 					 var drow = Number(path[i][0]) + diagonalRowNum[c];
 					 var dcol = Number(path[i][1]) + diagonalColNum[c];
-					 console.log("for ["+path[i][0]+path[i][1]+"]---->"+drow,dcol);
 					 if(isValid(drow, dcol) && (i+2<path.length)){
 					      if (path[i+2][0] == drow && path[i+2][1] == dcol ){
 									  diagonalPath.push([path[i+2][0],path[i+2][1]]);
 										isDiagonalFound = true;
-		                 console.log("we can skip"+path[i+1]);
+		                 //console.log("we can skip"+path[i+1]);
 											i++;
 											 break;
 					   }
@@ -224,11 +216,11 @@ findDiagonalPath = function (){
 	   }
 		 if(!isDiagonalFound)
 		 {
-			 diagonalPath.push([path[i][0],path[i][1]]);
+			 diagonalPath.push([path[i][lowVal],path[i][1]]);
 		 }
   }
-	console.log("final path-->"+diagonalPath);
-	//diag push last elemtn   onalPath.push()
+	//console.log("Final path-->"+diagonalPath);
+
 }
 
           //print the matrix
@@ -263,13 +255,13 @@ printMatrix = function(mat,type) {
                    }
 };
 
-printCordi = function(mat,dist,src,dest){
+buildCoordi = function(mat,dist,src,dest){
                    path=[];
                    path.push([dest.x,dest.y]);
 
                    var pt = dest;
                    dist = dist-1;
-                   while(dist >0)
+                   while(dist >lowVal)
                    {
                            for (var i = 0; i < 4; i++)
                            {
@@ -300,5 +292,5 @@ module.exports.pathLine = pathLine;
 module.exports.isValid =isValid;
 module.exports.buildMatrix =buildMatrix;
 module.exports.printMatrix = printMatrix;
-module.exports.printCordi =printCordi;
+module.exports.buildCoordi =buildCoordi;
 module.exports.BFS =BFS;

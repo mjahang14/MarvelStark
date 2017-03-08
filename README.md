@@ -1,3 +1,2 @@
 # wather_info
-sample
-changes for commit
+This project is for fun, governed by certain licences

@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="">
+<head>
+<title>Dronifly</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link href="../css/styles/layout.css" rel="stylesheet" type="text/css" media="all">
+
+</head>
+<body id="top">
+<div class="wrapper row0">
+  <div id="topbar" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div class="fl_left">
+      <ul>
+        <li><i class="fa fa-phone"></i> +91 124 409 5888</li>
+        <li><i class="fa fa-envelope-o"></i>info@dpathfinder.com</li>
+      </ul>
+    </div>
+    <div class="fl_right">
+      <ul>
+        <li><a href="#"><i class="fa fa-lg fa-home"></i></a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+      </ul>
+    </div>
+    
+  </div>
+</div>
+<div class="wrapper row1">
+  <header id="header" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+    <div id="logo" class="fl_left">
+      <h1><a style="font-family:calibri;font-size:30px;" href="index.html">API Documentation</a></h1>
+    </div>
+    
+    <!-- ################################################################################################ --> 
+  </header>
+</div>
+<!-- ################################################################################################ --> 
+<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
+<div class="wrapper row2" style="height:50px;">
+  
+  <nav id="mainav" class="hoc clear"> 
+    <!-- ################################################################################################ -->
+   
+ <ul class="clear" style="margin-top:0px;">
+      <li class="active"><a href="../index.html">Home</a></li>
+      <li><a href="map.html">DRONE MAP</a></li>
+     
+      <li><a href ="submitnfz.html"> DRAW NFZ</a></li>
+      <li><a href ="bounding.html"> BOUNDING BOX</a></li>
+	  <li><a href ="document.hmtl"> Documentation</a></li>
+    </ul>
+    <!-- ################################################################################################ --> 
+  </nav>
+</div>
+<!-- ################################################################################################ --> 
+<!-- ################################################################################################ --> 
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('../images/backgrnd.jpg');">
+  <article id="pageintro" class="hoc clear" style="margin-top:0px"> 
+    <!-- ################################################################################################ -->
+    <h4 class="heading" style="font-family:calibri">Rest Api Documentation</h4>
+    
+
+<h4><p style="font-family:calibri;font-size:150%;">1. Resource endpoint: </p></h4><p style="font-family:calibri;font-size:150%">/api/getNFZ
+Type: GET
+Use this API to fetch geoJSON feature collection of No Flying Zone(NFZ). 
+</p>
+<h4><p style="font-family:calibri;font-size:150%">
+2. Resource endpoint: /api/getRoute/</p></h4>
+<p style="font-family:calibri;font-size:20;">
+Type: POST
+Use this API to get Air Route for Drone. This API needs Source and Destination to be posted
+in GeoJSON(RFC 7946) point collection format. In response, route response will be sent in geoJSON
+using Point collection format. Returned path will be guaranteed shortest path
+</p>
+<h4><p style="font-family:calibri;font-size:150%">
+3. Resource endpoint:/api/populateNFZ/</p></h4>
+<p style="font-family:calibri;font-size:20;">
+Type: POST
+USe this API to draw No flying zone, NFZ data shall be posted in geoJSON format polygon. Poygon 
+coordinates point should make a closed loop.
+</p>
+<h4><p style="font-family:calibri;font-size:150%">
+4. Resource endpoint: /api/getGrid/</p></h4>
+<p style="font-family:calibri;font-size:20;">
+Type: POST
+This api is used to get route grid data, this is developed to test routing algorithm for DEV team.
+User can use this to check if shortest route(in distance) is found avoiding all NFZ along path.
+
+(B) How it works</p>
+    
+  </article>
+</div>
+<!-- ################################################################################################ --> 
+<div class="wrapper row5">
+  <div id="copyright" class="hoc clear"> 
+    
+  </div>
+</div>
+<!-- ################################################################################################ --> 
+<a id="backtotop" href="#top"><i class="fa fa-chevron-up"></i></a> 
+<!-- JAVASCRIPTS --> 
+<script src="../controllers/scripts/jquery.min.js"></script>
+<script src="../controllers/scripts/jquery.backtotop.js"></script>
+<script src="../controllers/scripts/jquery.mobilemenu.js"></script>
+</body>
+</html>
